@@ -1,0 +1,44 @@
+前端后端代码规范
+Last edited by yijun 3 months ago
+PHP后台代码原则
+所有的变量名采用小驼峰命名法，如  $userInfo
+所有的类名采用大驼峰命名法，如  GoodsService
+所有方法名采用小驼峰命名法，如  getUserNane()
+方法命名基本原则
+获取相关数据（DB或者redis缓存），使用 get打头，比如 getGoods ,getUserInfo
+设置相关数据（DB或者redis缓存），使用 set打头，比如 setUserInfo, setConfig
+生成相关数据，使用gen打头（注：gen为generate的缩写），比如  genGoodsSn 生成商品编号
+变量，类名，方法名，推进尽可能使用完整的且符合业务逻辑的意义的英文单词，尽可能少使用不规范的单词缩写以及data，array等业务意义不明显的词语，绝对禁止使用 a,b,c,d等毫无意义的单词进行命名
+代码逻辑中尽可能少地出现 1，2，3等魔法数字，应该根据业务逻辑进行魔法数字常量化，通过const或者define把魔方数字变为能见名识义的常量单词。
+变量和操作符之间应该保留空格，比如  $a = 1 或者  for($i = 0; $i < 10; $i++)
+代码注意缩进规范，代码缩进使用4个空格作为缩进
+所有的服务类，应该以Service作为后缀，比如UserService, CatetoryService
+所有的服务类function可以尽可能使用static
+所有的模型类，类名必须和数据库的表名严格对应，比如 ShopUserRelation 对应的数据表为 shop_user_relation
+对于模型对应的变量建议以Model结尾，比如  $shopUserRelationModel = new ShopUserRelation()
+所有的数据库表设计的时候，表字段必须采用下划线的命名方式，比如 brand_id 而不是brandId
+数据表进行设计的时候，所有的表都需要包含id，enable，create_time字段
+所有的action数据返回必须采用Msg对象所为返回，在action使用 $this->msg = new Msg() 进行返回结果
+所有内部逻辑出现错误或者异常，应该使用throw new APIException进行处理，切勿使用die，或者exit方式进行错误处理。
+切勿在foreach循环逻辑中写DB查询逻辑，除非你能确定循环不会超过3层。
+所有的数据库操作都应该使用模型层来操作，切勿使用DB类直接进行SQL操作
+前端代码小程序端代码原则
+所有的变量名采用小驼峰命名法，如  var userInfo = {}
+所有的组件名（文件名）采用大驼峰命名法，如  SiderBar.vue
+所有方法名采用小驼峰命名法，如  getUserNane()
+方法命名基本原则
+
+获取相关数据，使用 get打头，比如 getGoods ,getUserInfo
+设置相关数据，使用 set打头，比如 setUserInfo, setConfig
+生成相关数据，使用gen打头（注：gen为generate的缩写），比如  genGoodsSn 生成商品编号
+变量，类名，方法名，推进尽可能使用完整的且符合业务逻辑的意义的英文单词，尽可能少使用不规范的单词缩写以及data，object等业务意义不明显的词语，绝对禁止使用 a,b,c,d等毫无意义的单词进行命名
+
+代码逻辑中尽可能少地出现 1，2，3等魔法数字，应该根据业务逻辑进行魔法数字常量化，通过const魔方数字变为能见名识义的常量单词。
+
+变量和操作符之间应该保留空格，比如 a = 1 或者  for(i = 0; i < 10; i++)
+
+代码注意缩进规范，代码缩进使用4个空格作为缩进
+
+最好不要在基础组件，复用性很高的组件的mounted的方法里，进行数据请求初始化的工作。
+
+对于复用性很高的部分，最好建议组件化提高其复用性
